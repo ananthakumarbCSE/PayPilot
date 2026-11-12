@@ -1,0 +1,22 @@
+flowchart TD
+    U[Customer browser] --> UI[PayPilot web UI]
+    UI -->|shopping request + optional local preferences| API[FastAPI backend]
+    UI -->|budget comparison| BAPI[Budget comparison endpoint]
+    API --> LLM[OpenAI tool-calling shopping agent]
+    LLM --> CAT[Product discovery service]
+    CAT --> LOCAL[Curated PayPilot demo catalog]
+    CAT --> DJ[DummyJSON sample catalog]
+    CAT -. optional .-> EB[eBay Browse API - view only]
+    LLM --> SUP[PayPilot Supervisor]
+    SUP --> SA[Shopping Agent]
+    SUP --> BA[Budget Agent]
+    SUP --> TA[Trust Agent]
+    SUP --> PA[Personalization Agent]
+    API --> DB[(SQLite database)]
+    UI -->|review proposal| API
+    API --> PP[PayPal Orders API - Sandbox]
+    PP -->|buyer approval| U
+    PP -->|server-side capture verification| API
+    API --> DB
+    OPS[Operations / analytics dashboard] --> API
+    API --> OPS

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d18">
+<title>PayPilot — Commerce Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+:root{color-scheme:dark;--bg:#080d18;--panel:#111c30;--panel2:#15233a;--line:#293b58;--text:#edf4ff;--muted:#91a4c1;--mint:#58e0c1;--blue:#7ba5ff;--purple:#bb9cff;--amber:#f4c778;--red:#ff8295}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 10% -10%,#20345c 0,transparent 35%),var(--bg);color:var(--text);font:14px Manrope,system-ui,sans-serif}
+a{color:var(--mint);text-decoration:none}.wrap{max-width:1450px;margin:auto;padding:27px 30px 45px}.top{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-bottom:20px;border-bottom:1px solid var(--line)}.brand{display:flex;gap:12px;align-items:center;font-weight:800;font-size:20px}.logo{width:39px;height:39px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--mint),var(--blue));color:#07121d;font-weight:900;font-size:21px}.brand small{display:block;color:var(--muted);font:9px 'DM Mono';letter-spacing:1.5px;margin-top:3px}.actions{display:flex;gap:10px;align-items:center}.link,.select,.refresh{border:1px solid var(--line);background:#111d31;color:var(--text);border-radius:10px;padding:10px 13px;font:11px Manrope;cursor:pointer}.refresh{background:linear-gradient(120deg,var(--mint),#7ab6ff);border:0;color:#07121d;font-weight:800}.heading{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:29px 0 20px}.eyebrow{font:10px 'DM Mono';letter-spacing:2px;color:var(--mint)}h1{font-size:31px;letter-spacing:-1px;margin:7px 0}.muted{color:var(--muted);font-size:12px;line-height:1.7}.updated{font:10px 'DM Mono';color:var(--muted);text-align:right}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.card{background:linear-gradient(145deg,#142139,#101a2c);border:1px solid var(--line);border-radius:15px;padding:17px;box-shadow:0 12px 36px #0002;min-width:0}.klabel{font:10px 'DM Mono';letter-spacing:1px;color:var(--muted);text-transform:uppercase}.kvalue{font-size:27px;font-weight:800;letter-spacing:-1px;margin:10px 0 4px}.hint{font-size:10px;color:var(--muted)}.mint{color:var(--mint)}.blue{color:var(--blue)}.purple{color:var(--purple)}.amber{color:var(--amber)}.charts{display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-top:15px}.chartcard{min-height:300px}.cardhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.cardhead h2{font-size:13px;margin:0}.chartbox{height:230px;position:relative}.lower{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.products{display:grid;gap:14px}.productrow{display:grid;grid-template-columns:minmax(100px,1fr) 2fr auto;gap:12px;align-items:center;font-size:11px}.bar{height:7px;border-radius:20px;background:#253650;overflow:hidden}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--mint),var(--blue));border-radius:20px}.tablecard{margin-top:14px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:720px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #263752;font-size:11px;white-space:nowrap}th{font:9px 'DM Mono';letter-spacing:1px;color:var(--muted);text-transform:uppercase}td{color:#dbe7f8}.status{display:inline-flex;border-radius:30px;padding:5px 8px;font:9px 'DM Mono';background:#23334c;color:#c9d7eb}.status.completed{background:#123a35;color:#75e7ca}.status.pending_approval,.status.created{background:#3c321c;color:#f5d18a}.status.failed,.status.cancelled{background:#44242d;color:#ffabb7}.activity{display:grid;gap:12px}.event{display:flex;gap:11px;align-items:flex-start;border-bottom:1px solid #263752;padding-bottom:11px}.eventdot{width:8px;height:8px;border-radius:50%;background:var(--mint);margin-top:5px;flex:none}.event b{font-size:11px}.event p{margin:3px 0;color:var(--muted);font-size:10px;line-height:1.5}.event time{font:9px 'DM Mono';color:#7186a4}.empty{color:var(--muted);font-size:11px;padding:20px 0}.foot{display:flex;justify-content:space-between;gap:12px;padding-top:20px;color:#6f829e;font:9px 'DM Mono'}.error{color:var(--red);font-size:11px;margin-top:10px}
+@media(max-width:950px){.kpis{grid-template-columns:repeat(2,1fr)}.charts,.lower{grid-template-columns:1fr}}
+@media(max-width:600px){.wrap{padding:17px 13px 30px}.top,.heading{align-items:flex-start;flex-direction:column}.actions{width:100%;flex-wrap:wrap}.updated{text-align:left}.kpis{gap:9px}.card{padding:13px}.kvalue{font-size:22px}h1{font-size:26px}.foot{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="/"><span class="logo">P</span><span>PayPilot<small>COMMERCE INTELLIGENCE</small></span></a>
+  <div class="actions"><a class="link" href="/">← Shopping agent</a><select id="period" class="select" aria-label="Analytics period"><option value="7">Last 7 days</option><option value="14" selected>Last 14 days</option><option value="30">Last 30 days</option><option value="90">Last 90 days</option></select><button id="refresh" class="refresh">Refresh data ↻</button></div>
+</header>
+<section class="heading"><div><div class="eyebrow">OPERATIONS OVERVIEW</div><h1>Commerce intelligence</h1><div class="muted">Live business metrics calculated from your PayPilot SQL database.</div></div><div class="updated" id="updated">WAITING FOR DATA</div></section>
+<section class="kpis">
+  <article class="card"><div class="klabel">Captured revenue</div><div class="kvalue mint" id="revenue">—</div><div class="hint">Successfully captured payments · USD</div></article>
+  <article class="card"><div class="klabel">Total orders</div><div class="kvalue" id="orders">—</div><div class="hint" id="orderHint">All recorded orders</div></article>
+  <article class="card"><div class="klabel">Completed payments</div><div class="kvalue blue" id="completed">—</div><div class="hint" id="paymentHint">Verified completed captures</div></article>
+  <article class="card"><div class="klabel">Payment success rate</div><div class="kvalue purple" id="successRate">—</div><div class="hint">Completed / recorded payment attempts</div></article>
+</section>
+<section class="charts">
+  <article class="card chartcard"><div class="cardhead"><h2>Revenue performance</h2><span class="klabel">USD · CAPTURED</span></div><div class="chartbox"><canvas id="revenueChart"></canvas></div></article>
+  <article class="card chartcard"><div class="cardhead"><h2>Order status mix</h2><span class="klabel">ALL TIME</span></div><div class="chartbox"><canvas id="statusChart"></canvas></div></article>
+</section>
+<section class="lower">
+  <article class="card"><div class="cardhead"><h2>Top products</h2><span class="klabel">COMPLETED ORDERS</span></div><div id="products" class="products"><div class="empty">Loading product performance…</div></div></article>
+  <article class="card"><div class="cardhead"><h2>Agent & checkout activity</h2><span class="klabel">ALL TIME</span></div><div id="activity" class="products"><div class="empty">Loading activity…</div></div></article>
+</section>
+<section class="card tablecard"><div class="cardhead"><h2>Recent orders</h2><span class="klabel">LATEST 12 RECORDS</span></div><div class="tablewrap"><table><thead><tr><th>Order ID</th><th>Created</th><th>Items</th><th>Total</th><th>Order status</th><th>Capture reference</th></tr></thead><tbody id="ordersRows"><tr><td colspan="6">Loading orders…</td></tr></tbody></table></div><div id="loadError" class="error"></div></section>
+<footer class="foot"><span>PAYPILOT // PAYPAL AI HACKATHON // SANDBOX OPERATIONS</span><span>Metrics reflect records currently stored in the configured database.</span></footer>
+</div>
+<script>
+let revenueChart=null,statusChart=null;
+const $=id=>document.getElementById(id);
+const money=value=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2}).format(Number(value)||0);
+const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function statusClass(value){return String(value||'').toLowerCase().replace(/[^a-z0-9_-]/g,'')}
+function drawCharts(data){
+ if(typeof Chart==='undefined'){$('loadError').textContent='Charts library could not load. Check your internet connection; KPI and table data are still available.';return}
+ const labels=data.daily.map(x=>new Date(x.date+'T00:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric'}));
+ if(revenueChart)revenueChart.destroy();
+ revenueChart=new Chart($('revenueChart'),{type:'line',data:{labels,datasets:[{label:'Captured revenue',data:data.daily.map(x=>x.revenue),borderColor:'#58e0c1',backgroundColor:'rgba(88,224,193,.12)',fill:true,tension:.35,pointRadius:2,pointHoverRadius:5,yAxisID:'y'},{label:'Orders',data:data.daily.map(x=>x.orders),borderColor:'#7ba5ff',backgroundColor:'#7ba5ff',tension:.35,pointRadius:2,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#aebed5',usePointStyle:true,boxWidth:7,font:{size:10}}}},scales:{x:{ticks:{color:'#8295b2',maxTicksLimit:8},grid:{color:'rgba(130,149,178,.08)'}},y:{beginAtZero:true,ticks:{color:'#8295b2',callback:v=>'$'+v},grid:{color:'rgba(130,149,178,.1)'}},y1:{beginAtZero:true,position:'right',ticks:{color:'#8295b2',precision:0},grid:{drawOnChartArea:false}}}}});
+ if(statusChart)statusChart.destroy();
+ const palette=['#58e0c1','#7ba5ff','#f4c778','#ff8295','#bb9cff','#6fc8e8'];
+ statusChart=new Chart($('statusChart'),{type:'doughnut',data:{labels:data.order_statuses.map(x=>x.status),datasets:[{data:data.order_statuses.map(x=>x.count),backgroundColor:palette,borderColor:'#111c30',borderWidth:4,hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{position:'bottom',labels:{color:'#aebed5',padding:14,usePointStyle:true,pointStyle:'circle',font:{size:10}}}}}});
+}
+async function load(){
+ $('refresh').disabled=true;$('refresh').textContent='Loading…';$('loadError').textContent='';
+ try{
+  const days=$('period').value;
+  const [analytics,orders]=await Promise.all([
+   fetch('/api/analytics/overview?days='+days).then(async r=>{if(!r.ok)throw Error('Analytics API returned '+r.status);return r.json()}),
+   fetch('/api/orders?limit=12').then(async r=>{if(!r.ok)throw Error('Orders API returned '+r.status);return r.json()})
+  ]);
+  const k=analytics.kpis;
+  $('revenue').textContent=money(k.captured_revenue);$('orders').textContent=k.total_orders;
+  $('completed').textContent=k.completed_payments;$('successRate').textContent=k.payment_success_rate+'%';
+  $('orderHint').textContent=k.pending_orders+' pending · '+k.failed_or_cancelled_orders+' failed/cancelled';
+  $('paymentHint').textContent=k.payment_count+' recorded payment records';
+  $('updated').textContent='UPDATED '+new Date(analytics.generated_at).toLocaleString();
+  drawCharts(analytics);
+  const products=analytics.top_products||[];
+  $('products').innerHTML=products.length?products.map((p,i)=>`<div class="productrow"><span>${esc(p.name)}</span><div class="bar"><span style="width:${Math.max(5,(p.units/Math.max(...products.map(x=>x.units)))*100)}%"></span></div><b>${p.units} units</b></div>`).join(''):'<div class="empty">No completed product sales yet.</div>';
+  const a=analytics.activity;
+  $('activity').innerHTML=[['Agent chat requests',a.chat_requests],['Orders created',a.orders_created],['Completed payments',a.completed_payments],['Total recorded events',a.total_events]].map(([label,value])=>`<div class="productrow"><span>${label}</span><span></span><b>${value}</b></div>`).join('');
+  const rows=orders.orders||[];
+  $('ordersRows').innerHTML=rows.length?rows.map(o=>`<tr><td><b>${esc(o.order_id)}</b></td><td>${o.created_at?new Date(o.created_at).toLocaleString():'—'}</td><td>${(o.items||[]).map(i=>`${esc(i.name)} × ${i.quantity}`).join(', ')}</td><td>${esc(o.currency)} ${esc(o.total)}</td><td><span class="status ${statusClass(o.status)}">${esc(o.status)}</span></td><td>${esc(o.payment?.capture_id||'—')}</td></tr>`).join(''):'<tr><td colspan="6" class="empty">No orders recorded yet.</td></tr>';
+ }catch(error){$('loadError').textContent=error.message+' — confirm the updated app/main.py is installed and restart the server.';$('ordersRows').innerHTML='<tr><td colspan="6">Unable to load records.</td></tr>'}
+ finally{$('refresh').disabled=false;$('refresh').textContent='Refresh data ↻'}
+}
+$('refresh').addEventListener('click',load);$('period').addEventListener('change',load);load();
+</script>
+</body></html>
